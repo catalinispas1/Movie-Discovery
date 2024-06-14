@@ -1,0 +1,32 @@
+<%- include("header.ejs") %>
+
+<div class="grid_centered">
+    <div class="grid_film_container">
+        <% movies.results.forEach(movie => { %>
+            <a href="/details?movie_id=<%= movie.id %>" class="flex_film_container">
+                <h2 class="movie_title"><%= movie.title %></h2>
+                <img src="<%= imageUrl + movie.poster_path%>" alt="<%= movie.title %> Poster" id="poster_image">
+            </a>
+        <% }); %>
+    </div>
+</div>
+
+<div class="pagination">
+    <a href="/<%=additionalUrl%>page=1">&laquo;&laquo;</a>
+    <a href="/<%=additionalUrl%>page=<%= selectedPage != 1 ? selectedPage - 1 : selectedPage %>" id="back">&laquo;</a>
+    <% if (movies.page < 6) { %>
+        <% for (let page = 1; pageNumber < 11 ? page <= pageNumber : page < 11; page++) { %>
+            <a href="/<%=additionalUrl%>page=<%=page%>" id="<%=page%>" class="<%= selectedPage === page ? 'selectedPage' : '' %>"> <%= page %> </a>
+        <%} %>
+    <% } else if(movies.page < pageNumber - 6){%>
+        <% for (let page = movies.page - 5; page < movies.page + 6; page++) { %>
+            <a href="/<%=additionalUrl%>page=<%=page%>" id="<%=page%>" class="<%= selectedPage === page ? 'selectedPage' : '' %>"> <%= page %> </a>
+        <%} %>
+    <% } else { %>
+        <% for (let page = Math.max(pageNumber - 10, 1); page <= pageNumber; page++) { %>
+            <a href="/<%=additionalUrl%>page=<%=page%>" id="<%=page%>" class="<%= selectedPage === page ? 'selectedPage' : '' %>"> <%= page %> </a>
+        <%} %>
+     <% } %>
+    <a href="/<%=additionalUrl%>page=<%= selectedPage != pageNumber ? selectedPage + 1 : selectedPage %>" id="next">&raquo;</a>
+    <a href="/<%=additionalUrl%>page=<%= pageNumber %>">&raquo;&raquo;</a>
+</div>

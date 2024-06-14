@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="current_movie.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="details_and_poster">
+        <div class="grid_item">
+            <img src="<%= backdropUrl + movie.backdrop_path %>" alt="Movie Poster" id="backdrop_img">
+        </div>
+
+
+        <div class="center_movie_details">
+            <div class="movie_container">
+
+                <h1 id="movie_title"><%= movie.title %> </h1>
+    
+                <div class="movie_genres">
+                    <p style="font-size: 2rem; margin: 0px;">Genres:</p>
+                    <div class="genres_list">
+                        <% movie.genres.forEach(genre => {  %>
+                            <p class="element genre_element"> <%= genre.name %> </p>
+                        <% }); %>
+                    </div>
+                </div>
+    
+                <div class="movie_details">
+                    <p class="element">Original Title - <%= movie.original_title %></p>
+                    <p class="element">Popularity - <%= movie.popularity %></p>
+                    <p class="element">Release Date - <%= movie.release_date %> </p>
+                    <p class="element">Runtime - <%= movie.runtime %> minutes </p>
+                    <p class="element">Average Vote - <%= movie.vote_average %> </p>
+                    <p class="element">Vote Count - <%= movie.vote_count %> </p>
+                </div>
+    
+            </div>
+        </div>
+
+    </div>
+    <p id="movie_overview"><%= movie.overview %></p>
+
+    <p id="prod_title">Production Companies:</p>
+
+    <div class="additional_details">
+
+        <div class="production_companies">
+            <div class="production_list">
+                <% movie.production_companies.forEach(element => { %>
+                    <p class="side_element"> <%= element.name %> </p>
+                <% }); %> 
+            </div>
+        </div>
+
+        <div class="side_details">
+            <div class="second_flex">
+                <p class="side_element">Original Language - <%= movie.original_language %></p>
+                <p class="side_element">Tagline - <%= movie.tagline %></p>
+                <p class="side_element">Status - <%= movie.status %></p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
